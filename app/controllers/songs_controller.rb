@@ -8,6 +8,10 @@ class SongsController < ApplicationController
     @song = Song.new
   end
 
+  def show
+    @song = Song.find_by(id: params[:id])
+  end
+
   def create
 
     @song = Song.new(song_params)
@@ -38,6 +42,7 @@ class SongsController < ApplicationController
   end
 
   def destroy
+#    binding.pry
     @song = Song.find_by_id(params[:id])
     @song.destroy
     redirect_to songs_path
